@@ -1,0 +1,75 @@
+[tool.flake8]
+max_line_length = 120
+max-doc-length = 120
+inline-quotes = "double"
+
+[tool.mypy]
+no_incremental = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_any_generics = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unreachable = true
+allow_untyped_decorators = true
+namespace_packages = true
+explicit_package_bases = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ml_validation"
+authors = [
+  { name="Viktor Moskalenko", email="moskalenkoviktor@list.ru" },
+]
+description = "Package for machine learning validation"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests >=2.31.0,<3.0.0",
+    "tqdm >=4.66.0,<5.0.0",
+    "numpy >=1.26.0,<2.0.0",
+    "pandas >=2.2.0,<3.0.0",
+    "scikit-learn >=1.4.0,<2.0.0",
+    "tabulate >=0.9.0,<1.0.0",
+    "matplotlib >=3.9.0,<4.0.0"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+test = [
+    "mypy >=1.10.0,<2.0.0",
+    "flake8 >=7.0.0,<8.0.0",
+    "Flake8-pyproject >=1.2.0,<2.0.0",
+    "flake8-quotes >=3.4.0,<4.0.0",
+    "isort >=5.13.0,<6.0.0",
+    "nbqa >=1.8.0,<2.0.0",
+    "types-requests >=2.31.0,<3.0.0",
+    "types-tabulate >=0.9.0,<1.0.0"
+]
+
+[tool.hatch.version]
+path = "ml_validation/version.py"
+
+[project.urls]
+Homepage = "https://gitlab.com/moskalenkoviktor/ml_validation"
+Issues = "https://gitlab.com/moskalenkoviktor/ml_validation/-/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ml_validation"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "*.ipynb",
+  "*.sh",
+  ".gitlab-ci.yml",
+]
